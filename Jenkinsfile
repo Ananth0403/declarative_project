@@ -42,7 +42,14 @@ pipeline {
                       ]
                   }
          }
- 
+ 	
+		stage('SonarQube'){
+			steps{
+			bat label: '', script: '''mvn sonar:sonar \
+			-Dsonar.host.url=http://localhost:9000 \
+			-Dsonar.login=squ_42be8fc5c88ddc55e0812cbde89514e24cbab945'''
+			}
+   		} 
 
 	stage('Maven Package'){
 	steps{
